@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>2D Colored House</title>
+
+  <script id="vertex-shader" type="x-shader/x-vertex">
+  #version 300 es
+  
+  in vec3 aPosition;
+  in vec3 aColor;
+  out vec4 vColor;
+  
+  void main()
+  {
+      gl_Position = vec4(aPosition, 1.0);
+      vColor = vec4(aColor, 1.0);
+  }
+</script>
+
+  <script id="fragment-shader" type="x-shader/x-fragment">
+  #version 300 es
+  precision mediump float;
+  
+  in vec4 vColor;
+  out vec4 fColor;
+  
+  void main()
+  {
+      fColor = vColor;
+  }
+
+</script>
+  <script type="text/javascript" src="../Common/initShaders.js"></script>
+  <script type="text/javascript" src="../Common/MVnew.js"></script>
+  <script type="text/javascript" src="chuyen_house.js"></script>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1097.0" data-gr-ext-installed="">
+  <canvas id="gl-canvas" width="512" height="512">
+    Oops ... your browser doesn't support the HTML5 canvas element
+  </canvas>
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open">
+    <style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style>
+    <div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration"
+      data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}">
+    </div>
+  </template></grammarly-desktop-integration>
+
+</html>

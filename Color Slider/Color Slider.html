@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)https://www.interactivecomputergraphics.com/Code/03/rotatingSquare3.html -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Color Slider</title>
+
+  <script id="vertex-shader" type="x-shader/x-vertex">
+  #version 300 es
+
+  in vec4 aPosition;
+
+  void main()
+  {
+    gl_PointSize = 1.0;
+    gl_Position = aPosition;
+  }
+</script>
+
+  <script id="fragment-shader" type="x-shader/x-fragment">
+  #version 300 es
+
+  precision mediump float;
+    
+  out vec4 fColor;
+  uniform vec3 uColor;  
+    
+  void main() 
+  {
+    fColor = vec4(uColor, 1.0);  
+  }
+  
+</script>
+  <script type="text/javascript" src="../Common/initShaders.js"></script>
+  <script type="text/javascript" src="../Common/MVnew.js"></script>
+  <script type="text/javascript" src="chuyen_colorSlider.js"></script>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1098.0" data-gr-ext-installed="">
+
+  <div>
+    red 0 <input id="RedSlider" type="range" min="0" max="100" step="1" value="0"> 100 <br>
+    green 0 <input id="GreenSlider" type="range" min="0" max="100" step="1" value="0"> 100 <br>
+    blue 0 <input id="BlueSlider" type="range" min="0" max="100" step="1" value="0"> 100 <br>
+  </div>
+
+
+  <canvas id="gl-canvas" width="512" height="512">
+    Oops ... your browser doesn't support the HTML5 canvas element
+  </canvas>
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open">
+    <style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style>
+    <div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration"
+      data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}">
+    </div>
+  </template></grammarly-desktop-integration>
+
+</html>

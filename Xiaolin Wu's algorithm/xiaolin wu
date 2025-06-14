@@ -1,0 +1,85 @@
+function plot(x, y, c) is
+    plot the pixel at (x, y) with brightness c (where 0 ≤ c ≤ 1)
+
+// integer part of x
+function ipart(x) is
+    return floor(x)					// round down to integer, regardless of value, 3.7 -> 3
+
+function round(x) is
+    return ipart(x + 0.5)			//round down if less then 0.5, round up if 0.5 or more
+
+// fractional part of x
+function fpart(x) is
+    return x - ipart(x)				//return decimal part, 3.7 -> 0.7
+
+function rfpart(x) is
+    return 1 - fpart(x)				//return reverse decimal part, 3.7 -> 0.3
+
+function drawLine(x0,y0,x1,y1) is
+    boolean steep := abs(y1 - y0) > abs(x1 - x0)			//check if the line is steep or not (slope > 1) (change in y is greater than change in x 
+															//which in turn make the line goes vertically rather than horizontally)
+															
+    if steep then					
+        swap(x0, y0)
+        swap(x1, y1)				//swap y and x coordinates so that the line become shallower (i.e move horizontally)
+    end if
+    if x0 > x1 then
+        swap(x0, x1)
+        swap(y0, y1)				//swap to make sure that the line move from left to right (i.e x0 to x1)
+    end if
+    
+    dx := x1 - x0					//change in y
+    dy := y1 - y0					//change in x
+
+    if dx == 0.0 then
+        gradient := 1.0				
+    else
+        gradient := dy / dx
+    end if							//calculate slope, == 1 to avoid divide by 0
+
+    // handle first endpoint
+    xend := round(x0)
+    yend := y0 + gradient * (xend - x0)						//not round this because we need the precise position of the ideal line at xend to compute brightness
+    xgap := rfpart(x0 + 0.5)								//how far from the center of the pixel -> determine the brightness of that pixel
+    xpxl1 := xend // this will be used in the main loop		//store for main loop
+    ypxl1 := ipart(yend)									//store for main loop
+    if steep then
+        plot(ypxl1,   xpxl1, rfpart(yend) * xgap)
+        plot(ypxl1+1, xpxl1,  fpart(yend) * xgap)			//undo the swap then plot vertical line
+    else
+        plot(xpxl1, ypxl1  , rfpart(yend) * xgap)
+        plot(xpxl1, ypxl1+1,  fpart(yend) * xgap)			//plot horizontal line of not steep
+    end if
+    intery := yend + gradient // first y-intersection for the main loop			//track y-coordinates when the line crossing pixel bouder
+    
+    // handle second endpoint
+    xend := round(x1)
+    yend := y1 + gradient * (xend - x1)
+    xgap := fpart(x1 + 0.5)
+    xpxl2 := xend //this will be used in the main loop
+    ypxl2 := ipart(yend)
+    if steep then
+        plot(ypxl2  , xpxl2, rfpart(yend) * xgap)
+        plot(ypxl2+1, xpxl2,  fpart(yend) * xgap)
+    else
+        plot(xpxl2, ypxl2,  rfpart(yend) * xgap)
+        plot(xpxl2, ypxl2+1, fpart(yend) * xgap)
+    end if
+    
+    // main loop												
+    if steep then
+        for x from xpxl1 + 1 to xpxl2 - 1 do					//for each integer between 2 endpoints
+           begin
+                plot(ipart(intery)  , x, rfpart(intery))		
+                plot(ipart(intery)+1, x,  fpart(intery))		//plot 2 nearest pixels with the corresponding brightness base on the distance to ideal line 
+                intery := intery + gradient						//update y-coordinates
+           end
+    else
+        for x from xpxl1 + 1 to xpxl2 - 1 do
+           begin
+                plot(x, ipart(intery),  rfpart(intery))
+                plot(x, ipart(intery)+1, fpart(intery))
+                intery := intery + gradient
+           end
+    end if
+end function

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://www.interactivecomputergraphics.com/Code/09/figure.html -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Hierarchical figures</title>
+
+  <script id="vertex-shader" type="x-shader/x-vertex">
+  #version 300 es
+
+  in vec4 aPosition;
+  in  vec3 aNormal;
+  out vec4 vColor;
+  out float vBright;
+
+  uniform vec4 ambientProduct, diffuseProduct, specularProduct;
+
+  uniform mat4 modelViewMatrix;
+  uniform mat4 projectionMatrix;
+  uniform mat4 rotationMatrix;
+  uniform vec4 lightPosition;
+  uniform float shininess;
+
+  uniform bool uLflag;
+
+  vec4 oPosition;
+
+  void main()
+  {
+      vBright = 1.0;
+
+      oPosition = modelViewMatrix * aPosition;
+
+      vec3 L;
+
+      if (uLflag){
+        if (lightPosition.w == 0.0){
+          L = normalize((modelViewMatrix * rotationMatrix * lightPosition).xyz);
+        } else
+          L = normalize((modelViewMatrix * rotationMatrix * lightPosition - oPosition).xyz);
+      }
+      else {
+        if (lightPosition.w == 0.0){
+          L = normalize((modelViewMatrix * lightPosition).xyz);
+        } else
+          L = normalize((modelViewMatrix * lightPosition - oPosition).xyz);
+      }
+
+      vec3 E = normalize(-oPosition.xyz);
+      vec3 H = normalize(L + E);
+      vec3 N = normalize((modelViewMatrix * vec4(aNormal,0)).xyz);
+
+      vec4 ambient = ambientProduct;
+      float Kd = max(dot(L, N), 0.0 );
+      vec4 diffuse = Kd * diffuseProduct;
+      float Ks =  pow(max(dot(N, H), 0.0), shininess);
+      vec4  specular = Ks * specularProduct;
+      if(dot(L, N) < 0.0)
+          specular = vec4(0.0, 0.0, 0.0, 1.0);
+      
+      gl_Position = projectionMatrix * modelViewMatrix * aPosition;
+      vColor = ambient + diffuse + specular;
+      vColor.a = 1.0;
+  }
+</script>
+
+  <script id="fragment-shader" type="x-shader/x-fragment">
+  #version 300 es
+
+  precision mediump float;
+  in vec4 vColor;
+  out vec4 fColor;
+  void main() 
+  {
+    fColor = vColor;
+  }
+  
+</script>
+  <script type="text/javascript" src="../Common/initShaders.js"></script>
+  <script type="text/javascript" src="../Common/MVnew.js"></script>
+  <script type="text/javascript" src="chuyen_HF.js"></script>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1101.0" data-gr-ext-installed="">
+  <div>
+    torso angle -180 <input id="slider0" type="range" min="-180" max="180" step="10" value="0">
+    180
+  </div><br>
+  <div>
+    head2 angle -180 <input id="slider10" type="range" min="-180" max="180" step="10" value="0">
+    180
+  </div><br>
+
+  <div>
+    head1 angle -180 <input id="slider1" type="range" min="-180" max="180" step="10" value="0">
+    180
+  </div><br>
+
+  <div>
+    left upper arm angle -180 <input id="slider2" type="range" min="-180" max="180" step="10" value="0">
+    180
+  </div><br>
+  <div>
+    left lower arm angle -180 <input id="slider3" type="range" min="-180" max="180" step="10" value="0">
+    180
+  </div><br>
+  <div>
+    right upper arm angle -180 <input id="slider4" type="range" min="-180" max="180" step="10" value="0">
+    180
+  </div><br>
+  <div>
+    right lower arm angle -180 <input id="slider5" type="range" min="-180" max="180" step="10" value="0">
+    180
+  </div><br>
+  <div>
+    left upper leg angle -180 <input id="slider6" type="range" min="-180" max="180" step="10" value="0">
+    180
+  </div><br>
+  <div>
+    left lower leg angle -180 <input id="slider7" type="range" min="-180" max="180" step="10" value="0">
+    180
+  </div><br>
+  <div>
+    right upper leg angle -180 <input id="slider8" type="range" min="-180" max="180" step="10" value="0">
+    180
+  </div><br>
+
+  <div>
+    right lower leg angle -180 <input id="slider9" type="range" min="-180" max="180" step="10" value="0">
+    180
+  </div>
+
+  <button id="Animation">Animation</button>
+  <button id="LightButton">On/Off</button>
+
+
+
+  <canvas id="gl-canvas" width="512" height=" 512">
+    Oops ... your browser doesn't support the HTML5 canvas element
+  </canvas>
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open">
+    <style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style>
+    <div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration"
+      data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}">
+    </div>
+  </template></grammarly-desktop-integration>
+
+</html>

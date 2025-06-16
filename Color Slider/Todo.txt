@@ -1,0 +1,12 @@
+Task: Make color silders for a chosen shape
+
+Procedures:
+1. Chosen shape: Square
+
+2. Added sliders for each color: Red, Green, Blue. Foe each silder, the value goes from 0 to 100,
+the gap between each value is 1 and the starting value is 0. 
+
+3. Color makes up of RGB value, which goes from 0 to 1, so to get the actual value to calcuate the resulted color,
+divided the slider's value by 100, then added it to corresponding color[] (0 for red, 1 for green, 2 for blue)
+
+4. Push the new color[] into colorLoc

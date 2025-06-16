@@ -1,0 +1,11 @@
+Task: Make a 2D colored house
+
+Procedures:
+1. For triangle roof, using Sierpinski Triangle Algorithm but change from gl.drawArrays(gl.POINTS) to drawArray(gl.LINES) 
+to fill all the space inside the triangle 
+
+2. For the house's body, using the same Sierpinski Triangle Algorithm but now push 4 points instead of 3 into both 
+positionArray and colorArray. Used drawArray(gl.LINES) instead of gl.drawArrays(gl.POINTS) to fill the color
+
+3. The body is a rectangle, and I divided it into 4 parts: left wall, right wall, middle wall that connect 2 side walls 
+(located on top of the door) and a door

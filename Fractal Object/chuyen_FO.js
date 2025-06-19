@@ -38,7 +38,6 @@ var mountainExample = function () {
 
         var vertices = [
             vec4(-1, 0, -0.5, 1),   //0
-            //vec4(0, 0, 1, 1), 
             vec4(1, 0, -0.5, 1),    //1
             vec4(-1, 0, -1, 1),     //2
             vec4(1, 0, -1, 1),      //3
@@ -117,6 +116,7 @@ var mountainExample = function () {
         positionsArray.push(a, b, c);
     }
 
+    /*
     function square(a, b, c, d) {
         positionsArray.push(a, b, c, d);
     }
@@ -153,6 +153,7 @@ var mountainExample = function () {
             divideSquare(b, c, midpoint, midpoint3, newFactor, count, num);
         }
     }
+    */
 
     function divideTriangle(a, b, c, factor, count, num) {
 
@@ -177,8 +178,6 @@ var mountainExample = function () {
             divideTriangle(a, b, midpoint, newFactor, count, num);
             divideTriangle(c, a, midpoint, newFactor, count, num);
             divideTriangle(b, c, midpoint, newFactor, count, num);
-
-
         }
     }
 

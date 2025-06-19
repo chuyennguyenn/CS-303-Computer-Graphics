@@ -1,0 +1,20 @@
+Task: Making a figure using Hierarchy Modeling and animate it
+
+Procedures:
+
+1. Define Node: transform matrix vec4(), render method, sibling node, child node
+Child-node's properties (strating position, scale) are their parent's
+Sibling-nodes are independent of each siblings, except for starting position and scale, which are from their parent
+One node can have many siblings, but can only have 1 parent and 1 child
+
+2. Depends on the node, it can have up to 3 scaling value (width/size, height, depth) which is used for scale matrix 
+to scale the object and a translate matrix to prevent them from overlapping each other 
+Some node is rotated to look more appropiate (i.e the nose is a rectangle, which should point upward instead of outward cause 
+I'm drawing a human figure not Pinocchio)
+
+3. To animate, change and update corresponding node's angle value from time to time. 
+
+4. Add light 
+
+5. Add sliders to control each node's rotation, 
+add buttons to start/stop the animation and to turn on/off light (despite the variable's name, it's actually not rotating at all)

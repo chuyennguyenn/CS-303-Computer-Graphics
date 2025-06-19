@@ -1,0 +1,9 @@
+Task: Make a fractual 3D scene using Recursive
+
+Procedures:
+1. Choose 3 points for the triangle
+
+2. Find the "mid"-point of this triangle, then add a random number to the y-coordinate of the new point 
+
+3. Recursively draw new triangle using the new "mid"-point and two of its parents point, 
+push triangle's color into color[] as we draw  

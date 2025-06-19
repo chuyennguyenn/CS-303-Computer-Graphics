@@ -63,22 +63,30 @@ var rightLipId = 17;
 
 var torsoHeight = 5.0;
 var torsoWidth = 1.0;
+
 var upperArmHeight = 3.0;
 var lowerArmHeight = 2.0;
+
 var upperArmWidth = 0.5;
 var lowerArmWidth = 0.5;
+
 var upperLegWidth = 0.5;
 var lowerLegWidth = 0.5;
+
 var lowerLegHeight = 2.0;
 var upperLegHeight = 3.0;
+
 var headHeight = 1.5;
 var headWidth = 1.0;
+
 var noseWidth = 0.2;
 var noseHeight = 0.2;
 var noseDepth = 0.45;
+
 var eyeSize = 0.1;
 var eyeBrowSize = 0.05;
 var eyeBrowLength = 0.25;
+
 var lipSize = 0.08;
 var lipLength = 0.25;
 
@@ -634,11 +642,6 @@ var render = function () {
         initNodes(rightUpperLegId);
         initNodes(rightLowerLegId);
     }
-
-
-
-
-
 
     traverse(torsoId);
 

@@ -1,0 +1,7 @@
+Task: Make a 3D scene and rotate the camera around the scene
+
+Procedures:
+
+1. Created a pyramid by push the points of each side into an array
+2. Added camera vecters (at, up, eye)
+3. Rotated the camera by change the value of theta3 (which represent the angle of the camera)

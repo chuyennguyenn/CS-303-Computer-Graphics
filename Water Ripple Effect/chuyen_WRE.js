@@ -63,8 +63,8 @@ var mountainExample = function () {
     var positionsArray = [];
 
     var radius = 4;
-    var fovy = 45.0;  // Field-of-view in Y direction angle (in degrees)           
-    var aspect;       // Viewport aspect ratio                                     
+    var fovy = 45.0;
+    var aspect;
     var eye;
 
     var modelViewMatrixLoc, projectionMatrixLoc;
@@ -200,7 +200,7 @@ var mountainExample = function () {
                     dz = z - source.z;
                     var r = Math.sqrt(dx * dx + dz * dz) * 2;
 
-                    var decay = Math.exp(-r * 0.5) / (1 + r * 3);
+                    var decay = Math.exp(-r * 0.5) / (1 + r * 3); //ripple source disappear over time
                     var delay = r / 1.5;
                     var localTime = global_time - delay - source.start_time;
 
@@ -209,11 +209,10 @@ var mountainExample = function () {
                     }
 
                     var timeRatio = 1 - localTime / ripple_time;
-                    var fade = Math.max(0.0, timeRatio);
+                    var fade = Math.max(0.0, timeRatio);    //wave disappear over time as it move further away from the source
                     wave = amplitude * fade * decay * Math.sin(frequency * r - localTime * 2.0 * Math.PI);
                     totalDx += (dx / r) * wave;
                     totalDz += (dz / r) * wave;
-
                 }
 
                 var nx = x + totalDx;

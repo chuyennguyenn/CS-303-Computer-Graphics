@@ -1,0 +1,9 @@
+Sierpinski Triangle: https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle
+
+Task: Draw 2 Sierpinski Triangles, can(not) be next to each other
+
+Procedures:
+
+1. Choose coordinates for each triangle's corner.
+2. Define how many positions should the program make, each triangle use half of into
+3. Push each point into positions[], use "gl.drawArrays(gl.POINTS, 0, positions.length);" to draw those point

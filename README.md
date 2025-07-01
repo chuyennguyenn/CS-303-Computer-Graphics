@@ -3,7 +3,8 @@ Course overview: Learn about computer graphics, both how to create them using po
 
 # Material: 
 "Interactive computer graphics" (8th edition) by Angel and Shreiner.
+
 https://www.interactivecomputergraphics.com/
 
 # Todo:
-Update readMe file for each folder
+Update Todo file for each folder

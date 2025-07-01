@@ -1,0 +1,13 @@
+The final test of the course, combine everything I've learned to make a 3D scene of my choice
+
+Final Product:
+The scene is about a mountain with a lake nearby. 
+Buttons: Raining/stop raining, and rotating.
+When rained, the scene will darken; when the raindrop hit the water, a ripple efect is created on the water surface. 
+When the rain stopped, the scene will brighten.
+
+Procedures:
+1. Used Fractual Object, Scene Rotating, Sierpinski Triangle (sort of), Color Slider (sort of)
+2. Make wave equation: https://en.wikipedia.org/wiki/Wave_equation. Each ripple has a life time (how long the ripple before disappear),
+fade (the further away fromt he source, the weaker the wave), decay(the ripple source is weaken over time), delay (travel time)
+3. When the rain hit the water surface, add hit coordinate into ripple source, and remove it when ripple time run out.

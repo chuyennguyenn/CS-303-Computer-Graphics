@@ -7,4 +7,7 @@ Course overview: Learn about computer graphics, both how to create them using po
 https://www.interactivecomputergraphics.com/
 
 # Todo:
-Update Todo file for each folder
+~~Update Todo file for each folder~~
+
+## Notes:
+To run the file, download the Common folder, and the complie the corresponding HTML file. Some files cannot run on FireFox so recommended to run on Chrome or Edge.
